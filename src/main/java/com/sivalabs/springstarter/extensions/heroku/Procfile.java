@@ -1,14 +1,15 @@
-package com.sivalabs.springstarter.extensions.docker;
+package com.sivalabs.springstarter.extensions.heroku;
 
 import io.spring.initializr.generator.io.template.MustacheTemplateRenderer;
 import io.spring.initializr.generator.io.text.MustacheSection;
 
 import java.util.Map;
 
-public class Dockerfile extends MustacheSection {
+public class Procfile extends MustacheSection {
 
-    public Dockerfile(MustacheTemplateRenderer templateRenderer, String templateName,
+    public Procfile(MustacheTemplateRenderer templateRenderer, String templateName,
                       Map<String, Object> model) {
         super(templateRenderer, templateName, model);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.sivalabs.springstarter.extensions.docker;
+package com.sivalabs.springstarter.extensions.heroku;
 
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
 
@@ -8,28 +8,28 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * A {@link ProjectContributor} that creates "Dockerfile".
+ * A {@link ProjectContributor} that creates "Procfile".
  *
  * @author Siva
  */
-public class DockerfileProjectContributor implements ProjectContributor {
+public class ProcfileProjectContributor implements ProjectContributor {
 
-	private final Dockerfile dockerfile;
+	private final Procfile procfile;
 
-	public DockerfileProjectContributor(Dockerfile dockerfile) {
-		this.dockerfile = dockerfile;
+	public ProcfileProjectContributor(Procfile procfile) {
+		this.procfile = procfile;
 	}
 
 	@Override
 	public void contribute(Path projectRoot) throws IOException {
-		Path output = projectRoot.resolve("Dockerfile");
+		Path output = projectRoot.resolve("Procfile");
 		if (!output.toFile().exists()) {
 			Files.createDirectories(output.getParent());
 			Files.createFile(output);
 		}
 
 		try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(output))) {
-			this.dockerfile.write(writer);
+			this.procfile.write(writer);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.sivalabs.springstarter.extensions.docker;
+package com.sivalabs.springstarter.extensions.heroku;
 
 import com.sivalabs.springstarter.extensions.common.ProjectDescriptionUtils;
 import io.spring.initializr.generator.io.template.MustacheTemplateRenderer;
@@ -9,17 +9,18 @@ import org.springframework.context.annotation.Bean;
 import java.util.Map;
 
 @ProjectGenerationConfiguration
-public class DockerProjectGenerationConfiguration {
+public class HerokuProjectGenerationConfiguration {
 
     @Bean
-    public Dockerfile dockerfile(MustacheTemplateRenderer templateRenderer,
-                                 ResolvedProjectDescription projectDescription) {
+    public Procfile procfile(MustacheTemplateRenderer templateRenderer,
+                             ResolvedProjectDescription projectDescription) {
         Map<String, Object> model = ProjectDescriptionUtils.getProjectCommonProperties(projectDescription);
-        return new Dockerfile(templateRenderer, "docker/Dockerfile", model);
+        return new Procfile(templateRenderer, "heroku/Procfile", model);
     }
 
     @Bean
-    public DockerfileProjectContributor dockerfileProjectContributor(Dockerfile dockerfile) {
-        return new DockerfileProjectContributor(dockerfile);
+    public ProcfileProjectContributor procfileProjectContributor(
+            Procfile procfile) {
+        return new ProcfileProjectContributor(procfile);
     }
 }
