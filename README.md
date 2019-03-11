@@ -36,6 +36,10 @@
 
     `start.spring.io> mvn spring-boot:run`
 
-5. Generate springboot app with **web** starter
+5. Generate springboot app
 
-The generated application should have a **Dockerfile** in src/main/resources.
+The generated application should have:
+
+* **Dockerfile**
+* **Procfile**
+* **Jenkinsfile**

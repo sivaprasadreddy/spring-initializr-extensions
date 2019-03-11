@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('* * * * *')
+    }
+
+    environment {
+        APPLICATION_NAME = '{{artifactId}}'
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+                sh './mvnw clean verify'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                    junit 'target/failsafe-reports/*.xml'
+                }
+            }
+        }
+    }
+}
